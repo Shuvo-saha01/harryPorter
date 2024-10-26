@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="spells.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jaini&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="header">Spells</h1>
+    <ul>
+
+    </ul>
+
+    <script>
+        fetch("https://potterapi-fedeperin.vercel.app/en/spells")
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(book => {
+            const markup = `<li class="card">
+                    <div class="flex">
+                    <div class="card-content">
+                        <h2 class="card-title">${book.index+1} .     ${book.spell}</h2>
+                        <p class="card-description">${book.use}</p>
+                    </div>
+                    </div>
+                </li>`;
+                
+            document.querySelector('ul').insertAdjacentHTML("beforeend", markup);
+        });
+    })
+    .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
